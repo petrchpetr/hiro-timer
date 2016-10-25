@@ -2,7 +2,6 @@
 
 var exports = module.exports = {};
 
-var TIMES={}
 
 if (!Date.now) {
     Date.now = function() { return new Date().getTime(); }
@@ -10,42 +9,54 @@ if (!Date.now) {
 
 
 
-
-
-exports.start = function(key){
-	if(TIMES[key]){
-		return false;
-	}
-	TIMES[key]={'start': Date.now()}
+function Timer() 
+{
+	this.TIMES={}
 }
 
-exports.stop = function(key){
-	if(!TIMES[key]){
+Timer.prototype.start = function(key){
+	if(this.TIMES[key]){
 		return false;
 	}
-	TIMES[key]['stop']= Date.now()
+	this.TIMES[key]={'start': Date.now()}
 }
 
-exports.toString = function(){
-	var keys=[]
+Timer.prototype.stop = function(key){
+	if(!this.TIMES[key]){
+		return false;
+	}
+	this.TIMES[key]['stop']= Date.now()
+}
+
+Timer.prototype.toString = function(){
 	var s = ''
-	Object.keys(TIMES).forEach(function(key){
-		var i = TIMES[key]
+	var keys = Object.keys(this.TIMES)
+	keys.forEach(function(key,idx,keys){
+		var i = this.TIMES[key]
 		var d = ''
 		if(i && i['start'] && i['stop']){
 			d=i['stop']-i['start']
 		}
 		s+=key+' '+i['start']+' '+i['stop']+' '+d+"\n"
-	})
+	},this)
 	return s
 }
+
+Timer.prototype.valueOf = function(){
+	return this.TIMES
+}
+
+exports = new Timer()
 
 
 function test()
 {
-	exports.start('test')
-	exports.stop('test')
-	console.log(exports.toString())
+	var T = new Timer()
+	T.start('test')
+	T.stop('test')
+	console.log(T.toString())
+	console.log(T.valueOf())
+	console.log(T)
 	
 }
 
