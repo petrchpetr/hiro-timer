@@ -1,0 +1,25 @@
+{
+  "name": "hiro-timer",
+  "version": "1.0.0",
+  "description": "The benchmarking object which instead of benchmarking function calls measures time between start and stop events. Can print simple formated output.",
+  "main": "hiro-timer.js",
+  "scripts": {
+    "test": "hiro-timer-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petrchpetr/hiro-timer.git"
+  },
+  "keywords": [
+    "benchmark",
+    "timer",
+    "node",
+    "javascript"
+  ],
+  "author": "Petr Chloupek",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/petrchpetr/hiro-timer/issues"
+  },
+  "homepage": "https://github.com/petrchpetr/hiro-timer#readme"
+}
